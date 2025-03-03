@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
+
+    <RelativeLayout
+
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:gravity="center"
+        tools:context=".ProfileActivity">
+        <TextView
+            android:id="@+id/txtSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profle Details"
+            android:layout_marginBottom="10dp"
+            android:textSize="50sp"/>
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:ems="18"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/txtSignIn"
+            android:hint="Enter Your Email" />
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:ems="18"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/txtName"
+            android:hint="Enter Password" />
+
+        <Button
+            android:id="@+id/btnSubmit3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtEmail"
+            android:textSize="20sp"
+            android:text="Logout"/>
+        <Button
+            android:id="@+id/btnDeleteAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSubmit3"
+            android:textSize="20sp"
+            android:text="Delete Account"/>
+
+
+    </RelativeLayout>
+</FrameLayout>
