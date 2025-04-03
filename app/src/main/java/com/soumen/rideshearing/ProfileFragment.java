@@ -76,7 +76,7 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
-                            String url = "http://192.168.128.150:8080/user/delete?email="+ Uri.encode(email);
+                            String url = "http://192.168.255.150:8080/user/delete?email="+ Uri.encode(email);
                             StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {

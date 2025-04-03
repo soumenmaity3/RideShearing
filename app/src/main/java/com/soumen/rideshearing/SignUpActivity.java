@@ -74,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "http://192.168.128.150:8080/user/register";
+        String url = "http://192.168.185.150:8080/user/register";
 
         StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

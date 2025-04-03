@@ -35,28 +35,55 @@ ArrayList<CarChoiceModel>arrCarModel=new ArrayList<>();
         RecyclerView recyclerView=findViewById(R.id.carChoiceRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        arrCarModel.add(new CarChoiceModel(R.drawable.car,"Amit Kumar",generatePrice(),"Four Wheeler",generateVehicleNumber(),generateContactNumber()));
-        arrCarModel.add(new CarChoiceModel(R.drawable.motorcycle,"Rajib Singha",generatePrice(),"Motor Cycle",generateVehicleNumber(),generateContactNumber()));
-        arrCarModel.add(new CarChoiceModel(R.drawable.scooter,"Rahul Roy",generatePrice(),"Scooter",generateVehicleNumber(),generateContactNumber()));
-        arrCarModel.add(new CarChoiceModel(R.drawable.rickshaw,"Subham Sen",generatePrice(),"Auto Rickshaw",generateVehicleNumber(),generateContactNumber()));
+        arrCarModel.add(new CarChoiceModel(R.drawable.car,"Amit Kumar",carPrice(),"Four Wheeler",generateVehicleNumber(),generateContactNumber()));
+        arrCarModel.add(new CarChoiceModel(R.drawable.motorcycle,"Rajib Singha",motorPrice(),"Motor Cycle",generateVehicleNumber(),generateContactNumber()));
+        arrCarModel.add(new CarChoiceModel(R.drawable.scooter,"Rahul Roy",scooterPrice(),"Scooter",generateVehicleNumber(),generateContactNumber()));
+        arrCarModel.add(new CarChoiceModel(R.drawable.rickshaw,"Subham Sen",autoPrice(),"Auto Rickshaw",generateVehicleNumber(),generateContactNumber()));
 
         CarChoiceAdapter adapter=new CarChoiceAdapter(arrCarModel, this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
-
-    public int generatePrice(){
-        int otp=0;
-
-        Random random = new Random();
-        int randomNumber = 100 + random.nextInt(900);
-        return randomNumber;
+    public int  carPrice(){
+        Random rand = new Random();
+        int num;
+        do {
+            num = rand.nextInt(1000);
+        } while (num < 700);
+        return num;
     }
+
+    public int motorPrice(){
+        Random rand = new Random();
+        int num;
+        do {
+            num = rand.nextInt(700);
+        } while (num < 500);
+        return num;
+    }
+    public int scooterPrice(){
+        Random rand = new Random();
+        int num;
+        do {
+            num = rand.nextInt(400);
+        } while (num < 300);
+        return num;
+    }
+
+    public int autoPrice(){
+        Random rand = new Random();
+        int num;
+        do {
+            num = rand.nextInt(350);
+        } while (num < 200);
+        return num;
+    }
+
 
     public String generateContactNumber() {
         Random random = new Random();
-        long randomNumber = 1000000000L + (long) (random.nextDouble() * 9000000000L); // Ensures 10-digit number
+        long randomNumber =100000000L + (long) (random.nextDouble() * 9000000000L); // Ensures 10-digit number
         return String.valueOf(randomNumber);
     }
 
