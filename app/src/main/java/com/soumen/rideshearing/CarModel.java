@@ -3,20 +3,18 @@ package com.soumen.rideshearing;
 public class CarModel {
     String start;
     String Destination;
-    String startTime,endTime,carNumber,carName;
+    String carNumber,carName;
+    boolean isComplete,isBook;
 
 
-    public CarModel(String start, String destination, String startTime, String carNumber, String endTime, String carName) {
+    public CarModel(String start, String destination, String carNumber, String carName, boolean isComplete, boolean isBook) {
         this.start = start;
         Destination = destination;
-        this.startTime = startTime;
         this.carNumber = carNumber;
-        this.endTime = endTime;
         this.carName = carName;
+        this.isComplete = isComplete;
+        this.isBook = isBook;
     }
-
-
-
 
     public String getStart() {
         return start;
@@ -34,21 +32,7 @@ public class CarModel {
         Destination = destination;
     }
 
-    public String getStartTime() {
-        return startTime;
-    }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
 
 
     public String getCarNumber() {

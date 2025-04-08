@@ -20,10 +20,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHold
 
     Context context;
     ArrayList<CarModel> arrayCar;
+    boolean isComplete = false;
+    boolean isBooked = false;
 
-    public HistoryAdapter(Context context, ArrayList<CarModel> arrayCar) {
+    public HistoryAdapter(Context context, ArrayList<CarModel> arrayCar, boolean isComplete, boolean isBooked) {
         this.context = context;
         this.arrayCar = arrayCar;
+        this.isComplete = isComplete;
+        this.isBooked = isBooked;
     }
 
     @NonNull
@@ -40,8 +44,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHold
         holder.carNumber.setText(carmodel.carNumber);
         holder.start.setText(carmodel.getStart());;
         holder.destination.setText(carmodel.getDestination());
-        holder.startTime.setText(carmodel.getStartTime());
-        holder.endTime.setText(carmodel.getEndTime());
+
         holder.carRow.setOnClickListener(v->{
             Intent intent=new Intent(context,RideActivity.class);
             context.startActivity(intent);
@@ -55,17 +58,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHold
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        TextView start, destination, startTime, endTime, carNumber, carName;
+        TextView start, destination,date, carNumber, carName,complete;
         LinearLayout carRow;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             start = itemView.findViewById(R.id.destStart);
             destination = itemView.findViewById(R.id.destiEnd);
-            startTime = itemView.findViewById(R.id.startTime);
-            endTime = itemView.findViewById(R.id.endTime);
             carNumber = itemView.findViewById(R.id.carNumber);
             carName = itemView.findViewById(R.id.carName);
+            date=itemView.findViewById(R.id.date);
+            complete=itemView.findViewById(R.id.complete);
             carRow=itemView.findViewById(R.id.carRow);
         }
     }

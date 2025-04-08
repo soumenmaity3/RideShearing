@@ -1,25 +1,41 @@
 package com.soumen.rideshearing;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import android.Manifest;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.*;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
 
 public class RideActivity extends AppCompatActivity {
     private static final int REQUEST_CALL_PERMISSION =1 ;
@@ -33,6 +49,12 @@ public class RideActivity extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationProviderClient;
     TextView txtCarType,txtOwner,txtCarNumber,txtContactNumber;
+    private static final String CHANNELID = "My_Channel";
+    private static final int NOTIFICATIONID = 100;
+    private static final int REQUEST_CODE = 100;
+
+    boolean bookClick=false;
+    boolean completeClick=false;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -71,14 +93,9 @@ public class RideActivity extends AppCompatActivity {
         // Request location permissions
         requestLocationPermissions();
 
-        btnBook.setOnClickListener(v -> {
-            btnBook.setVisibility(View.GONE);
-            btnCancel.setVisibility(View.VISIBLE);
-            btnComplete.setVisibility(View.VISIBLE);
-            btnShare.setVisibility(View.VISIBLE);
-        });
 
         btnCancel.setOnClickListener(v -> {
+            completeClick=false;
             btnBook.setVisibility(View.VISIBLE);
             btnCancel.setVisibility(View.GONE);
             btnComplete.setVisibility(View.GONE);
@@ -89,12 +106,30 @@ public class RideActivity extends AppCompatActivity {
             enableLocationSettings();
             shareLiveLocation();
         });
+        btnComplete.setOnClickListener(v-> {
+            completeClick=true;
 
+            Intent intent1=new Intent(this, PaymentActivity.class);
+            startActivity(intent1);
+            finish();
+        });
         txtContactNumber.setOnClickListener(v->{
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
             callIntent.setData(Uri.parse("tel:" + contactNumber));
             startActivity(callIntent);
+            finish();
         });
+
+        btnBook.setOnClickListener(v -> {
+            bookClick = true;
+            btnBook.setVisibility(View.GONE);
+            btnCancel.setVisibility(View.VISIBLE);
+            btnComplete.setVisibility(View.VISIBLE);
+            btnShare.setVisibility(View.VISIBLE);
+
+        });
+
+
 
     }
 

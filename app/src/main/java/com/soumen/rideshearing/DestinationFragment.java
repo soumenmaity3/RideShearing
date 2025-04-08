@@ -63,7 +63,10 @@ public class DestinationFragment extends Fragment {
                 Toast.makeText(getContext(), "Please enter both locations", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            if (start.toUpperCase().equals(end.toUpperCase())) {
+                Toast.makeText(getContext(), "Resource and destination is not equal", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent = new Intent(requireContext(), CarChoiceActivity.class);
             intent.putExtra("START_LOCATION", start);
             intent.putExtra("END_LOCATION", end);
